@@ -6,6 +6,7 @@ import { MdOutlineDone, MdDownloadDone } from "react-icons/md";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import useLike from "@/hooks/useLike";
+import { AiOutlineEdit } from "react-icons/ai";
 
 
 interface PostItemProps {
@@ -44,6 +45,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     return ( 
         <div 
             className="
+                group
                 rounded-lg
                 mt-[6px]
                 mx-[647px]
@@ -57,16 +59,22 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                 "
         >
             <div className="flex flex-row justify-center items-start gap-3 ">
-                <div className="w-full group">
+                <div className="w-full">
                     <div className="flex flex-row items-center gap-2">
-                        <p 
-                            className="text-slate-900 group-hover:text-white font-semibold"
-                        >{data.title}</p>
+                        <p className="text-slate-900 group-hover:text-white font-semibold">
+                            {data.title}
+                        </p>
                         <span 
                             className="text-neutral-500 group-hover:text-neutral-400 hidden md:block">
                             - {data.category}
                         </span>
-                        
+                        <div className="ml-auto cursor-pointer ">
+                            <div onClick={onDone} className="group-hover:text-neutral-400">
+                                <p className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
+                                    <AiOutlineEdit className=" " size={20}/>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <span className="text-neutral-500 group-hover:text-neutral-400 text-sm">
@@ -79,25 +87,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                         </span>
                     </div>
                     <div className="flex flex-row items-center mt-3 gap-10">
-                        <div 
-                            onClick={onDone}
-                            className="
-                                flex
-                                flex-row
-                                items-center
-                                text-neutral-500
-                                gap-1
-                                cursor-pointer
-                                transition
-                                hover:text-green-500
-                            ">
-                            <p className="
-                                hover:bg-blue-300
-                                hover:bg-opacity-10
-                                rounded-full
-                                p-2
-                                "
-                            >
+                        <div onClick={onDone} className="flex flex-row items-center text-neutral-500 gap-1 cursor-pointer transition hover:text-green-500">
+                            <p className="hover:bg-blue-300 hover:bg-opacity-10 rounded-full p-2">
                                 <DoneIcon size={20} color={hasDone ? 'green' : ''}/>
                             </p>
                         </div>

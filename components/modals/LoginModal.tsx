@@ -6,10 +6,6 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 
 import Input from "../Input";
 import Modal from "../Modal";
-import router, { useRouter } from "next/router";
-import useUser from "@/hooks/useUser";
-import useCurrentUser from "@/hooks/useCurrentUser";
-import useUsers from "@/hooks/useUsers";
 
 
 const LoginModal = () => {
@@ -35,7 +31,7 @@ const LoginModal = () => {
             
             await signIn('credentials', {
                 email,
-                password
+                password,
             })
 
             LoginModal.onClose();

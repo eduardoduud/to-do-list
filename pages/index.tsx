@@ -6,12 +6,12 @@ import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 
 export default function Home() {
-  const router = useRouter();
+  const { data: currentUser } = useCurrentUser();
 
   return (
       <>
       <Form placeholder=''/>
-      <PostFeed/>
+      <PostFeed userId={currentUser?.id}/>
       </>
   )
-}
+};

@@ -3,7 +3,7 @@ interface ButtonProps{
     secondary?: boolean;
     fullWidth?: boolean;
     large?: boolean;
-    onClick: () => void;
+    onClick: any;
     disabled?: boolean;
     outline?: boolean;
 }
@@ -30,9 +30,9 @@ const Button: React.FC<ButtonProps> = ({
                 transition
                 border-2
                 ${fullWidth ? 'w-full' : 'w-fit'}
-                ${secondary ? 'bg-white' : 'bg-emerald-500'}
-                ${secondary ? 'text-black' : 'text-white'}
-                ${secondary ? 'borde=black' : 'border-emerald-500'}
+                ${secondary ? 'bg-blue-500' : 'bg-emerald-500'}
+                ${secondary ? 'text-white' : 'text-white'}
+                ${secondary ? 'border-blue-500' : 'border-emerald-500'}
                 ${large ? 'text-xl' : 'text-md'}
                 ${large ? 'px-5' : 'px-4'}
                 ${large ? 'py-3' : 'py-2'}

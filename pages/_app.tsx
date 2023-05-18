@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Toaster />
       <EditModal />
       <RegisterModal />
-      <LoginModal />
+      <LoginModal/>
       <Layout>
         <Component {...pageProps} />
       </Layout>

@@ -18,7 +18,6 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({
-    isComment,
     postId
 }) => {
     const registerModal = useRegisterModal();
@@ -32,6 +31,16 @@ const Form: React.FC<FormProps> = ({
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const options = [
+        { value: "1", label: "Teste"},
+    ];
+
+    const handleChange = (selected: any) => {
+        setSelectedOption(selected);
+        console.log("handleChange", selected);
+    }
 
     const onSubmit = useCallback(async () => {
         try {
@@ -39,7 +48,7 @@ const Form: React.FC<FormProps> = ({
 
             await axios.post('/api/posts', { title, description, category });
 
-            toast.success('Tweet Created');
+            toast.success('Task Created');
 
             setTitle('');
             setDescription('');
@@ -61,10 +70,11 @@ const Form: React.FC<FormProps> = ({
                     <Button 
                         label="Logout"
                         onClick={signOut}
+                        secondary
                     />
                     </div>
                     <p className="flex mb-[35px] text-white justify-center">
-                    <a className="underline text-7xl decoration-sky-500">Task</a>&nbsp;<a className="underline text-7xl decoration-pink-500">List</a>
+                    <a className="underline text-7xl decoration-emerald-500">Task</a>&nbsp;<a className="underline text-7xl decoration-blue-500">List</a>
                     </p>
                 
                     <div className="flex flex-row justify-center gap-4">
@@ -75,7 +85,7 @@ const Form: React.FC<FormProps> = ({
                                 placeholder='Title'
                                 onChange={(e) => setTitle(e.target.value)}
                                 value={title}
-                                className="mt-1 resize-none block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                                className="mt-1 resize-none block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-base shadow-sm placeholder-slate-400
                                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                             ></textarea>
@@ -95,7 +105,7 @@ const Form: React.FC<FormProps> = ({
                                 placeholder='Description'
                                 onChange={(e) => setDescription(e.target.value)}
                                 value={description}
-                                className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                                className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-base shadow-sm placeholder-slate-400
                                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                             ></textarea>
@@ -111,8 +121,10 @@ const Form: React.FC<FormProps> = ({
                 </div>
             ) : (
             <div className="py-8">
-                <h1 className="text-white text-2xl text-center mb-4 font-bold">
-                   Welcome to Tuliter!
+                <h1 className="">
+                    <p className="flex mb-[35px] text-white justify-center">
+                        <a className="underline text-7xl decoration-emerald-500">Task</a>&nbsp;<a className="underline text-7xl decoration-blue-500">List</a>
+                    </p>
                 </h1>
                 <p className="text-red-500 text-1xl text-center mb-4 font-semibold">
                     This site is an educational project and is not intended for real usage
