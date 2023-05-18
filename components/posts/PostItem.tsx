@@ -7,6 +7,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import useLike from "@/hooks/useLike";
+import useDeleteTask from "@/hooks/useDeleteTask";
 
 import DeletePostButton from "../DeletePost";
 
@@ -23,6 +24,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
 
     const { data: currentUser } = useCurrentUser();
     const { hasDone, toggleDone } = useLike({ postId: data.id, userId });
+    const { loading, error, deleteTask } = useDeleteTask();
 
     const onDone = useCallback((event: any) => {
         event.stopPropagation();
@@ -33,6 +35,10 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
 
         toggleDone();
     }, [loginModal, currentUser, toggleDone]);
+
+    const handleDelete = () => {
+        deleteTask(data.id);
+      };
 
     const createdAt = useMemo(() => {
         if (!data?.createdAt) {
@@ -70,25 +76,25 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                             className="text-neutral-500 group-hover:text-neutral-400 hidden md:block">
                             - {data.category}
                         </span>
+                        <div>
+                            <span className="text-neutral-500 group-hover:text-neutral-400 text-sm">
+                                {createdAt} ago
+                            </span>
+                        </div>
                         <div className="ml-auto cursor-pointer ">
-                            <div onClick={onDone} className="group-hover:text-neutral-400">
+                            <div onClick={handleDelete} className="group-hover:text-neutral-400">
                                 <div className="hover:bg-blue-300 hover:text-red-500 hover:bg-opacity-10 rounded-full p-2">
-                                    <DeletePostButton postId={0}/>
+                                    <DeletePostButton postId={data.id}/>
                                 </div>
                             </div>
                         </div>
                         <div className=" cursor-pointer ">
-                            <div onClick={onDone} className="group-hover:text-neutral-400">
+                            <div className="group-hover:text-neutral-400">
                                 <div className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
                                     <AiOutlineEdit className=" " size={20}/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <span className="text-neutral-500 group-hover:text-neutral-400 text-sm">
-                            {createdAt} ago
-                        </span>
                     </div>
                     <div>
                         <span className="text-slate-900 group-hover:text-white mt-1 break-all">
