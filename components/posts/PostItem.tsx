@@ -2,11 +2,13 @@ import { formatDistanceToNowStrict } from "date-fns";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 import { MdOutlineDone, MdDownloadDone } from "react-icons/md";
+import { AiOutlineEdit } from "react-icons/ai";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import useLike from "@/hooks/useLike";
-import { AiOutlineEdit } from "react-icons/ai";
+
+import DeletePostButton from "../DeletePost";
 
 
 interface PostItemProps {
@@ -70,9 +72,16 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                         </span>
                         <div className="ml-auto cursor-pointer ">
                             <div onClick={onDone} className="group-hover:text-neutral-400">
-                                <p className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
+                                <div className="hover:bg-blue-300 hover:text-red-500 hover:bg-opacity-10 rounded-full p-2">
+                                    <DeletePostButton postId={0}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className=" cursor-pointer ">
+                            <div onClick={onDone} className="group-hover:text-neutral-400">
+                                <div className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
                                     <AiOutlineEdit className=" " size={20}/>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>

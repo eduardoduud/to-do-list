@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import prisma from "@/libs/prismadb"
+import prisma from "@/libs/prismadb";
 
 export default async function handler(
     req: NextApiRequest,
@@ -8,7 +8,7 @@ export default async function handler(
 ) {
     if (req.method !== 'GET') {
         return res.status(405).end();
-    }
+    };
 
     try {
         const { userId } = req.query;
