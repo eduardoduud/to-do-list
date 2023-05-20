@@ -19,7 +19,7 @@ const DeletePostButton: React.FC<DeletePostButtonProps> = ({ postId }) => {
   };
 
   return (
-    <MdDelete onClick={handleDelete}/>
+    <MdDelete/>
   );
 };
 

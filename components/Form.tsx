@@ -31,16 +31,6 @@ const Form: React.FC<FormProps> = ({
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const options = [
-        { value: "1", label: "Teste"},
-    ];
-
-    const handleChange = (selected: any) => {
-        setSelectedOption(selected);
-        console.log("handleChange", selected);
-    }
 
     const onSubmit = useCallback(async () => {
         try {

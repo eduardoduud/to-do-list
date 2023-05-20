@@ -3,41 +3,38 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
-import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
-import useUser from "@/hooks/useUser";
 
 import Input from "../Input";
 import Modal from "../Modal";
-import ImageUpload from "../ImageUpload";
+import usePosts from "@/hooks/usePosts";
+import usePost from "@/hooks/usePost";
 
 const EditModal = () => {
-  const { data: currentUser } = useCurrentUser();
-  const { mutate: mutateFetchedUser } = useUser(currentUser?.id);
+  const { mutate: mutatePosts, data: postId } = usePosts();
+  const { mutate: mutatePost } = usePost();
   const editModal = useEditModal();
 
-  const [profileImage, setProfileImage] = useState('');
-  const [coverImage, setCoverImage] = useState('');
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [bio, setBio] = useState('');
-
-  useEffect(() => {
-    setProfileImage(currentUser?.profileImage)
-    setCoverImage(currentUser?.coverImage)
-    setName(currentUser?.name)
-    setUsername(currentUser?.username)
-    setBio(currentUser?.bio)
-  }, [currentUser?.name, currentUser?.username, currentUser?.bio, currentUser?.profileImage, currentUser?.coverImage]);
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
   
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setTitle(title)
+    setCategory(category)
+    setDescription(description)
+  }, [title, category, description]);
 
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
 
-      await axios.patch('/api/edit', { name, username, bio, profileImage, coverImage });
-      mutateFetchedUser();
+      await axios.patch(`/api/posts/${postId}`, { title, category, description });
+
+      mutatePosts();
+      mutatePost();
 
       toast.success('Updated');
 
@@ -47,38 +44,26 @@ const EditModal = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [editModal, name, username, bio, mutateFetchedUser, profileImage, coverImage]);
+  }, [editModal, title, category, description, mutatePosts, mutatePost, postId]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <ImageUpload 
-        value={profileImage}
-        disabled={isLoading}
-        onChange={(image) => setProfileImage(image)}
-        label='Upload your profile image'
-      />
-      <ImageUpload 
-        value={coverImage}
-        disabled={isLoading}
-        onChange={(image) => setCoverImage(image)}
-        label='Upload your cover image'
-      />
       <Input
-        placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
-        value={name}
+        placeholder="Title"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
         disabled={isLoading}  
       />
       <Input 
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-        value={username}
+        placeholder="Category"
+        onChange={(e) => setCategory(e.target.value)}
+        value={category}
         disabled={isLoading} 
       />
       <Input 
-        placeholder="Bio"
-        onChange={(e) => setBio(e.target.value)}
-        value={bio}
+        placeholder="Description"
+        onChange={(e) => setDescription(e.target.value)}
+        value={description}
         disabled={isLoading} 
       />
     </div>
@@ -88,7 +73,7 @@ const EditModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={editModal.isOpen}
-      title="Edit your profile"
+      title="Edit task"
       actionLabel="Save"
       onClose={editModal.onClose}
       onSubmit={onSubmit}

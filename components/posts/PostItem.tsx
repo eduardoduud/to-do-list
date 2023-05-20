@@ -8,6 +8,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import useLike from "@/hooks/useLike";
 import useDeleteTask from "@/hooks/useDeleteTask";
+import useEditModal from "@/hooks/useEditModal";
 
 import DeletePostButton from "../DeletePost";
 
@@ -24,7 +25,9 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
 
     const { data: currentUser } = useCurrentUser();
     const { hasDone, toggleDone } = useLike({ postId: data.id, userId });
-    const { loading, error, deleteTask } = useDeleteTask();
+    const { deleteTask } = useDeleteTask();
+
+    const editModal = useEditModal();
 
     const onDone = useCallback((event: any) => {
         event.stopPropagation();
@@ -88,8 +91,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className=" cursor-pointer ">
-                            <div className="group-hover:text-neutral-400">
+                        <div className="cursor-pointer ">
+                            <div onClick={editModal.onOpen} className="group-hover:text-neutral-400">
                                 <div className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
                                     <AiOutlineEdit className=" " size={20}/>
                                 </div>
