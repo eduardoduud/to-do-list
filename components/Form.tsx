@@ -68,7 +68,7 @@ const Form: React.FC<FormProps> = ({
                     <a className="underline text-7xl decoration-emerald-500">Task</a>&nbsp;<a className="underline text-7xl decoration-blue-500">List</a>
                     </p>
                     <div className="flex flex-row justify-center gap-4">
-                        <div className="w-1/3 portrait:w-3/4">
+                        <div className="w-3/4 sm:w-3/4 md:w-2/4 xl:w-1/3">
                             <textarea
                                 maxLength={25}
                                 disabled={isLoading}

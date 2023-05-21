@@ -61,8 +61,10 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                     group
                     rounded-lg
                     mt-[6px]
-                    w-1/3
-                    portrait:w-3/4
+                    w-3/4
+                    sm:w-3/4
+                    md:w-2/4
+                    xl:w-1/3
                     border-[1px]
                     border-neutral-800
                     shadow-lg
@@ -104,7 +106,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                             </span>
                         </div>
                         <div>
-                            <span className="text-neutral-500 group-hover:text-neutral-400 text-sm">
+                            <span className="mt-15 text-neutral-500 group-hover:text-neutral-400 text-sm">
                                 {createdAt} ago
                             </span>
                         </div>
