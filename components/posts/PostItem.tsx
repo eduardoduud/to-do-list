@@ -89,7 +89,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                             </div>
                             <div className="cursor-pointer ">
                                 <div onClick={editModal.onOpen} className="group-hover:text-neutral-400">
-                                    <div className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2 portrait:hidden">
+                                    <div className="hover:bg-blue-300 hover:text-blue-500 hover:bg-opacity-10 rounded-full p-2">
                                         <AiOutlineEdit className=" " size={20}/>
                                     </div>
                                 </div>
