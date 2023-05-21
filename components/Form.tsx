@@ -67,7 +67,6 @@ const Form: React.FC<FormProps> = ({
                     <p className="flex mb-[35px] text-white justify-center">
                     <a className="underline text-7xl decoration-emerald-500">Task</a>&nbsp;<a className="underline text-7xl decoration-blue-500">List</a>
                     </p>
-                
                     <div className="flex flex-row justify-center gap-4">
                         <div className="w-1/3">
                             <textarea
