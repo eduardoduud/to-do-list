@@ -62,6 +62,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                     rounded-lg
                     mt-[6px]
                     w-1/3
+                    portrait:w-3/4
                     border-[1px]
                     border-neutral-800
                     shadow-lg
