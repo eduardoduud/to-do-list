@@ -1,7 +1,8 @@
-import { useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 interface DeleteTaskResponse {
+  postId: number;
   success: boolean;
   error?: string;
 }
@@ -12,8 +13,10 @@ const useDeleteTask = () => {
 
     try {
       await axios.post('/api/delete', { postId });
+      toast.success('Task deleted');
     } catch (error) {
       console.log(error);
+      toast.error('Something went wrong');
     }
 
   };

@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import axios from "axios";
+import Button2 from "./Button2";
 import Button from "./Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
@@ -13,7 +14,6 @@ import { signOut } from "next-auth/react";
 
 interface FormProps {
     placeholder: String
-    isComment?: boolean;
     postId?: string;
 }
 
@@ -45,6 +45,7 @@ const Form: React.FC<FormProps> = ({
             setCategory('');
             mutatePosts();
             mutatePost();
+            window.location.reload();
         } catch {
             toast.error('Something went wrong');
         } finally {
@@ -56,12 +57,12 @@ const Form: React.FC<FormProps> = ({
         <div className="px-5 py-2">
             {currentUser ? (
                 <div>
-                    <div className="flex flex-row justify-end">
-                    <Button 
-                        label="Logout"
-                        onClick={signOut}
-                        secondary
-                    />
+                    <div className="flex justify-end">
+                        <Button2 
+                            label="Logout"
+                            onClick={signOut}
+                            secondary
+                        />
                     </div>
                     <p className="flex mb-[35px] text-white justify-center">
                     <a className="underline text-7xl decoration-emerald-500">Task</a>&nbsp;<a className="underline text-7xl decoration-blue-500">List</a>
@@ -99,12 +100,45 @@ const Form: React.FC<FormProps> = ({
                                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                             ></textarea>
-                            <div className="mt-4 flex flex-row justify-center">
-                                <Button 
-                                    label="Create new task"
-                                    disabled={isLoading || !title || !description || !category}
-                                    onClick={onSubmit}
-                                />
+                            <div className="mt-4 justify-center">
+                                <div className="relative">
+                                    <button 
+                                        disabled={isLoading || !title || !description || !category}
+                                        className="
+                                                disabled:opacity-30
+                                                absolute
+                                                blur
+                                                rounded-md
+                                                -inset-1
+                                                bg-gradient-to-r 
+                                                from-emerald-500 
+                                                to-blue-500">
+
+                                    </button>
+                                    <button 
+                                            onClick={onSubmit}
+                                            disabled={isLoading || !title || !description || !category}
+                                            className="
+                                                px-5
+                                                py-3
+                                                relative
+                                                w-full
+                                                text-white
+                                                hover:text-emerald-500
+                                                hover:scale-95
+                                                duration-200
+                                                disabled:opacity-70
+                                                disabled:cursor-not-allowed
+                                                disabled:scale-100
+                                                disabled:text-white
+                                                rounded-md
+                                                font-semibold
+                                                transition
+                                                bg-black"
+                                    >
+                                        Create new task
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

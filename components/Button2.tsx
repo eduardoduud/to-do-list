@@ -1,4 +1,4 @@
-interface ButtonProps{
+interface Button2Props{
     label: string;
     secondary?: boolean;
     fullWidth?: boolean;
@@ -8,7 +8,7 @@ interface ButtonProps{
     outline?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button2: React.FC<Button2Props> = ({
     label,
     secondary,
     fullWidth,
@@ -22,13 +22,13 @@ const Button: React.FC<ButtonProps> = ({
             disabled={disabled}
             onClick={onClick}
             className={`
-                disabled:opacity-70
-                disable:cursor-not-allowed
-                rounded-lg
+                rounded-md
                 font-semibold
-                hover:opacity-80
-                border-2
-                relative
+                hover:bg-red-500
+                ease-in-out
+                delay-150
+                hover:scale-95
+                duration-200
                 ${fullWidth ? 'w-full' : 'w-fit'}
                 ${secondary ? 'bg-blue-500' : 'bg-emerald-500'}
                 ${secondary ? 'text-white' : 'text-white'}
@@ -45,4 +45,4 @@ const Button: React.FC<ButtonProps> = ({
      );
 }
  
-export default Button;
+export default Button2;

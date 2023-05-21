@@ -33,16 +33,6 @@ const RegisterModal = () => {
         try {
             setIsLoading(true);
 
-            if (name.length > 20) {
-                toast.error('Name must be 20 characters or less.');
-                throw new Error('');
-            }
-    
-            if (username.length > 10) {
-                toast.error('Username must be 10 characters or less.');
-                throw new Error('');
-            }
-
             const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!emailRegex.test(email)) {
                 toast.error('Invalid e-mail address');
@@ -77,12 +67,6 @@ const RegisterModal = () => {
                 placeholder="Name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                disabled={isLoading}
-            />
-            <Input 
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
                 disabled={isLoading}
             />
             <Input 
