@@ -96,19 +96,19 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                             </div>
                         </div>
                         <div>
-                            <span className="text-neutral-500 group-hover:text-neutral-400">
+                            <p className="text-neutral-500 group-hover:text-neutral-400">
                                 {data.category}
-                            </span>
+                            </p>
                         </div>
                         <div>
-                            <span className="text-slate-900 group-hover:text-white mt-1 break-all">
+                            <p className="text-slate-900 group-hover:text-white my-1 break-words">
                                 {data.description}
-                            </span>
+                            </p>
                         </div>
                         <div>
-                            <span className="mt-15 text-neutral-500 group-hover:text-neutral-400 text-sm">
+                            <p className="mt-15 text-neutral-500 group-hover:text-neutral-400 text-sm">
                                 {createdAt} ago
-                            </span>
+                            </p>
                         </div>
                         <div className="flex flex-row items-center mt-3 gap-10">
                             <div onClick={onDone} className="flex flex-row items-center text-neutral-500 gap-1 cursor-pointer transition hover:text-green-500">
