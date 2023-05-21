@@ -42,7 +42,6 @@ const RegisterModal = () => {
             await axios.post('/api/register', {
                 email,
                 password,
-                username,
                 name
             })
 
@@ -59,7 +58,7 @@ const RegisterModal = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [RegisterModal, email, password, username, name]);
+    }, [RegisterModal, email, password, name]);
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
