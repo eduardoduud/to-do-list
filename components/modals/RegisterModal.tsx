@@ -45,7 +45,7 @@ const RegisterModal = () => {
                 name
             })
 
-            toast.success('Account created.');
+            toast.success('Account created');
 
             signIn('credentials', {
                 email,
@@ -55,6 +55,7 @@ const RegisterModal = () => {
             RegisterModal.onClose();
         } catch (error) {
             console.log(error);
+            toast.error('Something went wrong');
         } finally {
             setIsLoading(false);
         }
@@ -69,13 +70,13 @@ const RegisterModal = () => {
                 disabled={isLoading}
             />
             <Input 
-                placeholder="DO NOT USE A REAL E-MAIL"
+                placeholder="E-mail | DO NOT USE A REAL E-MAIL"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 disabled={isLoading}
             />
             <Input 
-                placeholder="DO NOT USE A REAL PASSWORD"
+                placeholder="Password | DO NOT USE A REAL PASSWORD"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
