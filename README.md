@@ -1,4 +1,4 @@
-# Build and Deploy: Twitter clone with React, Tailwind, Next, Prisma, Mongo, NextAuth & Vercel
+# Fullstack To-do task list with React, Tailwind, Next, Prisma, Mongo, NextAuth & Vercel
 
 ![Fullstack](https://i.imgur.com/jCijTUY.png)
 ![Fullstack](https://i.imgur.com/RWvEYEl.png)
